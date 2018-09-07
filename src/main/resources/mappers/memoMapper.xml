@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.sinc.mybatis.mapper.memo">
+  <insert id="memoregisterrow" parameterType="memo" flushCache="true">
+  	INSERT INTO MEMO
+  	VALUES (MEMOSEQ.NEXTVAL, #{userId}, #{wineId}, #{wine_img}, #{wine_name}, #{proId}, #{proName},#{proImg}, #{pro_price})
+  
+  </insert>
+  
+  <select id="memolistrow" parameterType="String" resultType="memo" flushCache="true" useCache="true">
+  	SELECT MEMOID, USERID, WINEID, IMG_NAME, WINE_NAME, PROID, PRONAME, PRO_PRICE FROM MEMO
+  	WHERE USERID=#{userId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="memodeleterow" parameterType="Integer" flushCache="true">
+  	DELETE FROM MEMO 
+  	WHERE MEMOID=#{memoId}
+  </delete>
+  
+  
+  </mapper>

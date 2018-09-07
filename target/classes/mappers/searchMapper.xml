@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.sinc.mybatis.mapper.search">
+ 
+ <select id="searchRow" parameterType="search" resultType="wine" flushCache="true" useCache="true">
+ 	SELECT * FROM WINEINFO
+ 	<choose>
+ 		<when test="wine_Type !=null">
+ 			WHERE WINE_TYPE=#{wine_Type}
+	 		<if test= "sugar !=null">
+	 			AND SUGAR= #{sugar}
+	 		</if>
+	 		<if test= "acid !=null">
+	 			AND ACID= #{acid}
+	 		</if>
+	 		<if test= "wine_Country !=null">
+	 			AND WINE_COUNTRY= #{wine_Country}
+	 		</if>
+ 		</when>
+ 		<when test="sugar !=null">
+ 			WHERE SUGAR=#{sugar}
+	 		<if test= "acid !=null">
+	 			AND ACID= #{acid}
+	 		</if>
+	 		<if test= "wine_Country !=null">
+	 			AND WINE_COUNTRY= #{wine_Country}
+	 		</if>
+ 		</when>
+ 		<when test="acid !=null">
+ 			WHERE ACID=#{acid}
+	 		<if test= "wine_Country !=null">
+	 			AND WINE_COUNTRY= #{wine_Country}
+	 		</if>
+ 		</when>
+ 		<when test="wine_Country !=null">
+ 			WHERE WINE_COUNTRY=#{wine_Country}
+ 		</when>
+ 		
+ 		
+
+ 	</choose>
+
+ </select>
+ </mapper>
